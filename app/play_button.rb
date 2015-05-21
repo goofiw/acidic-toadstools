@@ -8,8 +8,11 @@
 
 get '/play' do
 	@game = game_waiting
-	if @game && session[:office_id] == game_waiting[:office_id]
-    @game.visitor_id = session[id]
+	puts @game.inspect
+	if @game && 
+		 session[:office_id] == game_waiting[:office_id] &&
+		 session[:id] != @game.user_id
+    @game.visitor_id = session[:id]
     puts "need to send out a notification"
 	else
 		@game = Game.new(office_id: session[:office_id],
@@ -17,11 +20,13 @@ get '/play' do
                      visitor_id: 0,
                      timeout: 900
 			               )
+		puts "Creating a new Game"
 
 	end
 			@game.save
+			redirect '/'
 end
 
 def game_waiting
-  Game.find_by('visitor_id', 0)
+  Game.find_by(visitor_id: 0)
 end
