@@ -1,3 +1,23 @@
+
+<% if @auth_error || (@user && @user.errors.any?) %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <% if @auth_error %>
+        <strong>Authentication Error:</strong>
+        <ul>
+        <li>Login or Password did not match</li>
+        </ul>
+      <% else %>
+        <strong>Registration Error(s):</strong>
+        <ul>
+        <% @user.errors.full_messages.each do |user| %>
+          <li><%= user %></li>
+        <% end %>
+        </ul>
+      <% end %>
+  </div>
+<% end %>
+
 <h2>Welcome <%= session[:username] %></h2>
 your email is <%= session[:email] %>
 

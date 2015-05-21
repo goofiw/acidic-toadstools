@@ -22,21 +22,6 @@
 </head>
 
 <body>
-
-<% if @user && @user.errors.any? %>
-<!--TODO: DEBUG THIS -->
-<!-- Display error messages -->
-  <div class="alert alert-danger">
-    <strong>Some issues with your user, please fix them:</strong>
-    <ul>
-      <% @user.errors.full_messages.each do |user| %>
-      <li><%= user %></li>
-      <% end %>
-      <li><%= "Passwords do not match" unless @passwords_match %></li>
-    </ul>
-    <a href="/">Back!</a>
-  </div>
-<% end %>
   <%= yield %>
 </body>
 </html>

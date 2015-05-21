@@ -11,7 +11,7 @@ post '/users/new' do
 	  session[:email] = @user.email
 		redirect '/'
 	else
-		redirect '/'
+		erb :index
 	end
 end
 
@@ -22,8 +22,8 @@ post '/user_sessions' do
 	  session[:email] = @user.email
     redirect '/'
   else
-  	@errors = "Username or password is not correct"
-    redirect '/'
+  	@auth_error = true
+    erb :index
   end
 end
 
