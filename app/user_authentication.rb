@@ -12,6 +12,7 @@ post '/users/new' do
 	  session[:office_id] = 1 # test code, need to implement office creation/connection
 		redirect '/'
 	else
+		@user.errors.add(:pass_dont_match, "Passwords do not match")
 		erb :index
 	end
 end
@@ -23,7 +24,6 @@ post '/user_sessions' do
 	  session[:email] = @user.email
     redirect '/'
   else
-  	@auth_error = true
     erb :index
   end
 end
