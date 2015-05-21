@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521174807) do
+ActiveRecord::Schema.define(version: 20150521212515) do
 
   create_table "games", force: :cascade do |t|
-    t.integer "office_id"
-    t.integer "user_id"
-    t.integer "visitor_id"
-    t.integer "timeout"
+    t.integer  "office_id"
+    t.integer  "user_id"
+    t.integer  "visitor_id"
+    t.integer  "timeout"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "offices", force: :cascade do |t|
-    t.string  "name"
-    t.string  "password"
-    t.boolean "public"
+    t.string   "name"
+    t.string   "password"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "offices_users", force: :cascade do |t|
@@ -33,9 +37,11 @@ ActiveRecord::Schema.define(version: 20150521174807) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
