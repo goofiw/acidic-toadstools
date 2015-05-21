@@ -1,39 +1,33 @@
-get '/create' do
-  erb :create
-end
-
-post '/create' do
+post '/users/new' do
 	@password_match = (params[:password] == params[:password_confirm])
 	@user = User.new(
 		               username: params[:username],
+		               email: params[:email],
 		               password: params[:password]
 		               )
 	if @password_match && @user.save 
 	#notify account creation
-	  session[:id] = @user.id
+	  session[:username] = @user.username
+	  session[:email] = @user.email
 		redirect '/'
 	else
-		erb :create
+		redirect '/'
 	end
 end
 
-get '/signin' do
-	erb :signin
-end
-
-post '/signin' do
-	user = User.find_by(username: params[:username])
-	if user && user.password == params[:password]
-		session[:id] = user.id
-		@errors = nil
-		redirect '/'
-	else
-		@errors = "Username or password is not correct"
-		erb :signin
-	end
+post '/user_sessions' do
+  @user = User.find_by(email: params[:email], password: params[:password])
+  if @user
+	  session[:username] = @user.username
+	  session[:email] = @user.email
+    redirect '/'
+  else
+  	@errors = "Username or password is not correct"
+    redirect '/'
+  end
 end
 
 get '/logout' do
-	session[:id] = nil
+	session.clear
 	redirect '/'
 end

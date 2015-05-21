@@ -1,40 +1,22 @@
-	<!-- Display error messages -->
-<% if @user && @user.errors.any? %>
-  <div class="alert alert-danger">
-    <strong>Some issues with your user, please fix them:</strong>
-    <ul>
-      <% @user.errors.full_messages.each do |user| %>
-      <li><%= user %></li>
-      <% end %>
-      <li><%= "Passwords do not match" unless @passwords_match %></li>
-    </ul>
-    <a href="/">Back!</a>
-  </div>
+<h2>Welcome <%= session[:username] %></h2>
+your email is <%= session[:email] %>
+
+<br>
+<br>
+
+<% if session[:username] %>
+  <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
+<% else %>
+<!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Login
+  </button>
+
+  <%= erb :_signin_user %>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">
+    Register
+  </button>
+  <%= erb :_create_user %>
 <% end %>
-<ul><li><%= "Passwords do not match" unless @passwords_match %></li></ul>
-
-<form method="post" action="/create" class="form-inline">
-  <div class="form-group">
-
-  <div>
-    
-    <div class="form-group">
-	    <label>Desired Username:</label>
-	    <input type="text" name="username" value="<%= @user && @user.username %>" class="form-control">  
-    </div>
-
-	  <div class="form-group">
-	    <label>Password:</label>
-	    <input type="text" name="password" value="<%= @user && @user.password %>" class="form-control">
-	  </div>
-
-    <div class="form-group">
-      <label>Confirm Password:</label>
-      <input type="text" name="password_confirm" class="form-control">
-    </div>
-
-  </div>
-
-    <input type="submit" value="Submit" class="btn-default">
-
-</form>
