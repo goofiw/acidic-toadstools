@@ -9,6 +9,7 @@ post '/users/new' do
 	#notify account creation
 	  session[:username] = @user.username
 	  session[:email] = @user.email
+	  session[:office_id] = 1 # test code, need to implement office creation/connection
 		redirect '/'
 	else
 		redirect '/'

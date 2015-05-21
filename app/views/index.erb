@@ -6,6 +6,7 @@ your email is <%= session[:email] %>
 
 <% if session[:username] %>
   <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
+  <%= erb :_play_button %>
 <% else %>
 <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -20,3 +21,4 @@ your email is <%= session[:email] %>
   </button>
   <%= erb :_create_user %>
 <% end %>
+
