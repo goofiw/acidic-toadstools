@@ -7,6 +7,10 @@
 # 		 
 
 get '/play' do
+	@client.messages.create (
+		from:
+		to: '+17787063656',
+		body: "I'm sending a message! (maybe)")
 	@game = game_waiting
 	if session[:office_id]  && !already_has_game?
 		current_user_game = Game.find_by(user_id: session[:id]) 

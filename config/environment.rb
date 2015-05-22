@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'bundler/setup'
 
+require 'twilio-ruby' 
+
 require 'active_support/all'
 
 # Load Sinatra Framework (with AR)

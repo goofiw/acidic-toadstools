@@ -8,6 +8,8 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 
+gem 'twilio-ruby'
+
 gem 'puma'
 gem 'tux'
 
