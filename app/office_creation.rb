@@ -1,12 +1,12 @@
 post '/office/new' do
 	# @password_match = (params[:password] == params[:password_confirm])
-	@office = office.new(
-		               name: params[:officename],
+	@office = Office.new(
+		               name: params[:name],
 		               password: params[:password] ||= nil
 		               )
 	if @office.save 
 	#notify account creation
-	  session[:office_id] = id 
+	  session[:office_id] = @office.id 
 	end
 	redirect '/'
 end
