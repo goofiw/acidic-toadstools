@@ -1,7 +1,8 @@
+require_relative 'twilio_helper'
 require_relative 'user_authentication'
 require_relative 'play_button'
 require_relative 'office_creation'
-requie_relative 'twilio_helper'
+
 # Homepage (Root path)
 
 helpers do
@@ -26,7 +27,7 @@ get '/office/:id' do
   redirect '/'
 end
 
-get 'game/destroy/:id'
+get 'game/destroy/:id' do
 #should delete the game with id params[:id]
 end
 

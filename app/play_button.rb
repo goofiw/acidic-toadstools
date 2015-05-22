@@ -6,11 +6,16 @@
 # 		add this_user_id to record, send_out_email/sound/notification w/ matched user and instructions
 # 		 
 
+
+
 get '/play' do
-	@client.messages.create (
-		from:
+  
+  #guys super careful with this code.  Running it costs real money.
+	twilio_client.messages.create(
+		from: '+17782000868',
 		to: '+17787063656',
-		body: "I'm sending a message! (maybe)")
+		body: "I'm sending a message! (maybe)" 
+  )
 	@game = game_waiting
 	if session[:office_id]  && !already_has_game?
 		current_user_game = Game.find_by(user_id: session[:id]) 
