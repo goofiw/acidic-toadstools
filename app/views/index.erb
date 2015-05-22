@@ -45,6 +45,8 @@ your email is <%= session[:email] %>
 	<% end %>
     <h3>list of All games</h3>  
 		<% if all_games.length > 0 %>
+  <!-- TODO insert a link to '/office/:id' (id is the game id) only shows if game id equals current user id -->
+
 		<div>
 		  <ul>
 		    <% all_games.each do |game|  %>
