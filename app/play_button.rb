@@ -8,25 +8,28 @@
 
 get '/play' do
 	@game = game_waiting
-	if session[:office_id] 
+	if session[:office_id]  && !already_has_game?
 		current_user_game = Game.find_by(user_id: session[:id]) 
 		if !!@game && session[:id] != @game.user_id
 	    @game.visitor_id = session[:id]
 	    puts "need to send out a notification"
 		else
-			unless already_has_game?
-				@game = Game.new(office_id: session[:office_id],
-					               user_id: session[:id],
-		                     visitor_id: 0,
-		                     timeout: 900
-					               )
-				puts "Creating a new Game"
-	    end
+			@game = Game.new(office_id: session[:office_id],
+				               user_id: session[:id],
+	                     visitor_id: 0,
+	                     timeout: 900
+				               )
+			puts "Creating a new Game"
 		end
 				@game.save
 				redirect '/'
 	else
-		@game.errors.add(:no_office, "Must select office to FOOS!")
+		if !session[:office_id]
+			@game.errors.add(:no_office, "Must select office to FOOS!")
+		elsif already_has_game?
+			@game.errors.add(:already_waiting, 
+				               "You're already waiting for a game in your office")
+		end
 		erb :index
 	end
 end
