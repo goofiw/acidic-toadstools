@@ -4,8 +4,13 @@ require_relative 'office_creation'
 # Homepage (Root path)
 
 helpers do
+	
 	def all_offices
 		Office.all
+	end
+
+	def all_games
+		Game.all
 	end
 end
 

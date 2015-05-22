@@ -43,6 +43,16 @@ your email is <%= session[:email] %>
 		</div>
 	<% end %>
 
+		<% if all_games.length > 0 %>
+		<div>
+		  <ul>
+		    <% all_games.each do |game|  %>
+		      <li><%= game %></li>
+		    <% end %>
+		  </ul>
+		</div>
+	<% end %>
+
   <%= erb :_create_office %>
   <%= session[:office_name] %>
 
