@@ -27,9 +27,8 @@ get '/office/:id' do
   redirect '/'
 end
 
-get 'game/destroy/:id' do
-#should delete the game with id params[:id]
+get '/game/destroy/:id' do
+  #should delete the game with id params[:id]
+  Game.find(params[:id]).destroy
+  redirect '/'
 end
-
-
-

@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'twilio-ruby' 
+# require 'twilio-ruby' 
 
 require 'active_support/all'
 
