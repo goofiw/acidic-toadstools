@@ -25,5 +25,9 @@ get '/office/:id' do
   redirect '/'
 end
 
+get 'game/destroy/:id'
+#should delete the game with id params[:id]
+end
+
 
 
