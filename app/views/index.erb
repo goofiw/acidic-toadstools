@@ -35,6 +35,7 @@ your email is <%= session[:email] %>
 
 	<% if all_offices.length > 0 %>
 		<div>
+      <h3>List of offices</h3>
 		  <ul>
 		    <% all_offices.each do |office|  %>
 		      <li><a href="office/<%= office.id %>"><%= office.name %></a></li>
@@ -42,7 +43,7 @@ your email is <%= session[:email] %>
 		  </ul>
 		</div>
 	<% end %>
-
+    <h3>list of All games</h3>  
 		<% if all_games.length > 0 %>
 		<div>
 		  <ul>
@@ -54,9 +55,11 @@ your email is <%= session[:email] %>
 	<% end %>
 
   <%= erb :_create_office %>
+  <h2>Current Office<h3>
   <%= session[:office_name] %>
 
 <% else %>
+<h1>Sign in or create a user to get going</h1>
 <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
     Login
