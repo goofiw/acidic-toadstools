@@ -11,11 +11,12 @@
 get '/play' do
   
   #guys super careful with this code.  Running it costs real money.
-	twilio_client.messages.create(
-		from: '+17782000868',
-		to: '+17787063656',
-		body: "I'm sending a message! (maybe)" 
-  )
+	# twilio_client.messages.create(
+	# 	from: '+17782000868',
+	# 	to: '+17787063656',
+	# 	body: "I'm sending a message! (maybe)" 
+ #  )
+
 	@game = game_waiting
 	if session[:office_id]  && !already_has_game?
 		current_user_game = Game.find_by(user_id: session[:id]) 
@@ -48,5 +49,5 @@ def game_waiting
 end
 
 def already_has_game?
-	!!Game.find_by(user_id: session[:id], office_id: session[:office_id])
+  Game.find_by(user_id: session[:id], office_id: session[:office_id], visitor_id: 0) 
 end
