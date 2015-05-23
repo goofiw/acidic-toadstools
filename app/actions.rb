@@ -24,6 +24,8 @@ end
 get '/office/:id' do
   session[:office_id] = params[:id]
   session[:office_name] = Office.find(params[:id]).name
+  session[:company_name] = Office.find(params[:id]).company_name
+
   redirect '/'
 end
 
