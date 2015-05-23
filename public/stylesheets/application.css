@@ -8,34 +8,9 @@ html {
     height: 100%;
 }
 
-@media(min-width:767px) {
-    .navbar {
-        padding: 20px 0;
-        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        transition: background .5s ease-in-out,padding .5s ease-in-out;
-    }
-
-    .top-nav-collapse {
-        padding: 0;
-    }
-}
-
-/*.header {
-    display: table;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: url(../img/bg.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}*/
-
 .intro-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 200px;
     text-align: center;
     background: url(../img/foosballer_bg.png) no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -46,14 +21,14 @@ html {
 
 .offices-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 10px;
     text-align: center;
     background: #fff;
 }
 
 .games-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 10px;
     text-align: center;
     background: #eee;
 }
