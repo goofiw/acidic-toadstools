@@ -30,7 +30,12 @@ html {
     height: 100%;
     padding-top: 45px;
     text-align: center;
-    background: #fff;
+    /*background: url(../img/Office_cubicle20.jpg) no-repeat center center scroll;*/
+    background: url(../img/luxurious-cubicle-design20.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .games-section {
@@ -38,4 +43,9 @@ html {
     padding-top: 45px;
     text-align: center;
     background: #eee;
+    background: url(../img/foosballer2_bg20.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
