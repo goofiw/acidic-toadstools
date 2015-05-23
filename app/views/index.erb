@@ -105,10 +105,18 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Games Section</h1>
+                <% all_games.each do |game|  %>
+                  <%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
+                  <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
+                    <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
+                  <% end %>
+                <% end %>
             </div>
         </div>
     </div>
 </section>
+
+
 
 
 
