@@ -8,6 +8,13 @@ html {
     height: 100%;
 }
 
+.navbar {
+    width:100%;
+    position:fixed;
+    top: 0px;
+    z-index: 1;
+}
+
 .intro-section {
     height: 100%;
     padding-top: 200px;
@@ -31,10 +38,4 @@ html {
     padding-top: 10px;
     text-align: center;
     background: #eee;
-}
-
-.navbar {
-    width:100%;
-    position:fixed;
-    top:0px;
 }
