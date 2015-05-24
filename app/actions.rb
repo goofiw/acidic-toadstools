@@ -41,14 +41,11 @@ get '/' do
 end
 
 get '/office/:id' do
-  user = User.find(session[:id])
-  user.add_office(params[:id])
-
   session[:office_id] = params[:id]
   session[:office_name] = Office.find(params[:id]).name
   session[:company_name] = Office.find(params[:id]).company_name
 
-  redirect '/#offices'
+  redirect '/'
 end
 
 get '/game/destroy/:id' do
