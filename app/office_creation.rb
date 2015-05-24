@@ -7,8 +7,6 @@ post '/office/new' do
 		               )
 	if @office.save 
 	#notify account creation
-	puts @office.mod.inspect
-	puts session[:user].inspect
 	  mod = Mod.new(user_id: session[:user].id,
 	  	            office_id: @office.id)
 

@@ -30,7 +30,10 @@ helpers do
   end
 end
 
-
+get '/matched' do
+  erb :_matched, layout:false #if your game#matched
+  #game#matched = false
+end
 
 get '/game_list' do
   erb :_active_game_list, layout: false
