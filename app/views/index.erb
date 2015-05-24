@@ -18,7 +18,20 @@
   </div>
 <% end %>
 
-<!-- Error Alerts -->
+<% if @game && @game.errors.any? %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error(s):</strong>
+        <ul>
+        <% @game.errors.full_messages.each do |game| %>
+          <li><%= game %></li>
+        <% end %>
+        </ul>
+  </div>
+<% end %>
+
+
+<!-- Navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +82,12 @@
             <div class="col-lg-12">
                 <h1>Office Fooooos</h1>
                 <h4>Take a Break. Play Fooseball. </h4>
-                <a class="btn btn-success btn-lg page-scroll" href="#offices">View Offices</a>
+                <% if session[:username] %>
+                  <a class="btn btn-success btn-lg page-scroll" href="/play">Play Foo at <%= session[:office_name] %> <%= session[:company_name] %></a>
+                <% else %>
+                  <a class="btn btn-success btn-lg page-scroll" href="#offices">View Offices</a>
+                <% end %>
+
             </div>
         </div>
     </div>
@@ -118,108 +136,7 @@
 </section>
 
 
-
-
-
 <!-- Add in Modals -->
 <%= erb :_signin_user %>
 <%= erb :_create_user %>
 <%= erb :_create_office %>
-
-
-
-
-
-
-<div class="container">
-    <div class="col-md-12 column">
-  <% if @error || (@user && @user.errors.any?) %>
-  <div class="alert alert-danger alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <% if @auth_error %>
-        <strong>Authentication Error:</strong>
-        <ul>
-        <li>Login or Password did not match</li>
-        </ul>
-      <% else %>
-        <strong>Registration Error(s):</strong>
-        <ul>
-        <% @user.errors.full_messages.each do |user| %>
-          <li><%= user %></li>
-        <% end %>
-        </ul>
-      <% end %>
-  </div>
-<% end %>
-
-<h2>Welcome <%= session[:username] %></h2>
-
-<br>
-<br>  
-
-<% if session[:username] %>
-  <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
-  <%= erb :_play_button %>
-
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#officeNew">
-    Create Office
-  </button>
-
-  <% if all_offices.length > 0 %>
-    <div>
-      <h3>List of offices</h3>
-      <ul>
-        <% all_offices.each do |office|  %>
-          <li><a href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <h3>list of All games</h3>  
-  <% if all_games.length > 0 %>
-
-  <!-- TODO insert a link to '/office/:id' (id is the game id) only shows if game id equals current user id -->
-
-      <div>
-      <ul>
-        <% all_games.each do |game|  %>
-          <li><%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
-          
-          <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
-            <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
-          <% end %>
-        <% end %></li>
-          
-
-
-      </ul>
-    </div>
-  <% end %>
-
-
-
-
-<% else %>
-<h1>Sign in or create a user to get going</h1>
-<!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
-    Login
-  </button>
-
-
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">
-    Register
-  </button>
-
-<% end %>
-
-    </div>
-</div>
-
-
-
-
-
