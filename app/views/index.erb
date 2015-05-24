@@ -89,7 +89,7 @@
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <% all_offices.each do |office|  %>
+                        <% all_user_offices.each do |office|  %>
                           <li> <a role="menuitem" tabindex="-1" href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
                           <br> </li>
                         <% end %>
@@ -130,22 +130,7 @@
 
 
 <!-- Games Section -->
-<section id="games" class="games-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Games Section</h1>
-                <% all_games.each do |game|  %>
-                  <%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
-                  <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
-                    <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
-                  <% end %>
-                  <br>
-                <% end %>
-            </div>
-        </div>
-    </div>
-</section>
+<%= erb :_active_game_list %>
 
 
 <!-- Add in Modals -->

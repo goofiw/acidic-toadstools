@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 
   def add_office(office_id)
-  	OfficesUsers.new( user_id: @id,
-                      office_id: office_id
-                      )
+  	self.offices << Office.find(office_id)
+  	self.save
   end
 end
