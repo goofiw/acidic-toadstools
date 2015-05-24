@@ -82,20 +82,9 @@
                 <div id="matched"></div>
                   <% if session[:username] %>
                     <% if session[:office_name] %>
-                      <a class="btn btn-success btn-lg page-scroll" href="/play">Play Foo at <%= session[:office_name] %> <%= session[:company_name] %></a>
+                      <a class="btn btn-success btn-lg" href="/play">Play Foo at <%= session[:company_name] %> <%= session[:office_name] %></a>
                     <% else %>
-                      <div class="dropdown" id="fuckyouwork">
-                        <button class="btn btn-success btn-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                          Select Office
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                          <% all_user_offices.each do |office|  %>
-                            <li> <a role="menuitem" tabindex="-1" href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
-                            <br> </li>
-                          <% end %>
-                        </ul>
-                      </div>
+                      <a class="btn btn-success btn-lg page-scroll" href="#offices">Select Office</a>
                     <% end %>
                   <% else %>
                     <a class="btn btn-success btn-lg page-scroll" href="#offices">View Offices</a>
@@ -112,16 +101,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Offices Section</h1>
-                <% if all_offices.length > 0 %>
-                  <% all_offices.each do |office|  %>
-                    <a href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
-                    <br>
-                  <% end %>
-                <% end %>
+                  <% if session[:username] %>
+                    <% if all_offices.length > 0 %>
+                      <% all_offices.each do |office|  %>
+                        <a href="office/<%= office.id %>"><%= office.company_name %> <%= office.name %> </a>
+                        <br>
+                      <% end %>
+                    <% else %>
+                      <% all_offices.each do |office|  %>
+                          <a  href="#" data-toggle="modal" data-target="#login"><%= office.company_name %> <%= office.name %> </a>
+                    <% end %>
 
                 <% if session[:username] %>
                   <br>
-                  Current Office:
+                  <strong>Your Office is set to:</strong>
                   <%= session[:office_name] %> <%= session[:company_name] %>
                 <% end %>
             </div>
