@@ -9,5 +9,5 @@ post '/office/new' do
 	#notify account creation
 	  session[:office_id] = @office.id 
 	end
-	redirect '/'
+	redirect '/#offices'
 end

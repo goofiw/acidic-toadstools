@@ -58,9 +58,6 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= session[:username] %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#" data-toggle="modal" data-target="#officeNew">Create office</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
@@ -83,7 +80,22 @@
                 <h1>Office Fooooos</h1>
                 <h4>Take a Break. Play Fooseball. </h4>
                 <% if session[:username] %>
-                  <a class="btn btn-success btn-lg page-scroll" href="/play">Play Foo at <%= session[:office_name] %> <%= session[:company_name] %></a>
+                  <% if session[:office_name] %>
+                    <a class="btn btn-success btn-lg page-scroll" href="/play">Play Foo at <%= session[:office_name] %> <%= session[:company_name] %></a>
+                  <% else %>
+                    <div class="dropdown">
+                      <button class="btn btn-success btn-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        Select Office
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <% all_offices.each do |office|  %>
+                          <li> <a role="menuitem" tabindex="-1" href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
+                          <br> </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
                 <% else %>
                   <a class="btn btn-success btn-lg page-scroll" href="#offices">View Offices</a>
                 <% end %>
@@ -92,7 +104,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Offices Section -->
 <section id="offices" class="offices-section">
@@ -129,6 +140,7 @@
                   <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
                     <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
                   <% end %>
+                  <br>
                 <% end %>
             </div>
         </div>

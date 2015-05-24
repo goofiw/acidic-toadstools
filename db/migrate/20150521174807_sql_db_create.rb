@@ -15,7 +15,7 @@ class SqlDbCreate < ActiveRecord::Migration
 
   	create_table :offices_users do |t|
   		t.references :office
-  		t.references :student
+  		t.references :user
   		t.integer :mod_id
   	end
 
