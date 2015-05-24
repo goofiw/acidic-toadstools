@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150522231045) do
 
   create_table "offices_users", force: :cascade do |t|
     t.integer "office_id"
-    t.integer "student_id"
+    t.integer "user_id"
     t.integer "mod_id"
   end
 
