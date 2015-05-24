@@ -6,7 +6,13 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 
   def add_office(office_id)
-  	self.offices << Office.find(office_id)
-  	self.save
+  	puts OfficesUsers.find_by(user_id: @id, office_id: office_id).inspect
+  	if OfficesUsers.find_by(user_id: @id, office_id: office_id)
+	  		puts "should throw error!"
+	  		errors.add(:duplicate, "We already have you connected with that office")
+    else 
+	  	self.offices << Office.find(office_id)
+	  	self.save
+	  end
   end
 end
