@@ -55,6 +55,7 @@ get '/matched' do
 end
 
 get '/game_list' do
+  puts "FUCK"
   erb :_active_game_list, layout: false
 end
 

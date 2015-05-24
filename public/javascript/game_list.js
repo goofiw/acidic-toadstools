@@ -1,16 +1,13 @@
 
   //server return comments in json formate
-$(getGameList)
-$(get_matched)
+$(document).ready(function() { 
+polling()
+});
 
-function getGameList() {
+function polling() {
 	console.log("pulling")
-  $("#gameList").load("/game_list");
-	setTimeout(getGameList, 5000)
-}
-
-function get_matched() {
-	console.log("matched?")
+  $("#games").load("/game_list");
   $("#matched").load("/matched");
-  setTimeout(get_matched, 10000)
+	setTimeout(polling, 5000)
+	
 }
