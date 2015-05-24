@@ -10,6 +10,7 @@ post '/users/new' do
 	  session[:id] = @user.id
 	  session[:username] = @user.username
 	  session[:email] = @user.email
+	  session[:user] = @user
 	  #session[:office_id] = 1 # test code, need to implement office creation/connection
 		redirect '/'
 	else
@@ -24,6 +25,7 @@ post '/user_sessions' do
   	session[:id] = @user.id
 	  session[:username] = @user.username
 	  session[:email] = @user.email
+	  session[:user] = @user
     redirect '/'
   else
     erb :index

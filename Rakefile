@@ -21,3 +21,12 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
+desc 'wipe tables'
+task "db:wipe" do
+  Game.destroy_all
+  User.destroy_all
+  Mod.destroy_all
+  Office.destroy_all
+  OfficesUsers.destroy_all
+end
+

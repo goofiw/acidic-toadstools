@@ -2,7 +2,6 @@ require_relative 'twilio_helper'
 require_relative 'user_authentication'
 require_relative 'play_button'
 require_relative 'office_creation'
-require_relative 'game_display_helper'
 
 # Homepage (Root path)
 
@@ -30,6 +29,8 @@ helpers do
     # User.find(home_player)
   end
 end
+
+
 
 get '/game_list' do
   erb :_active_game_list, layout: false

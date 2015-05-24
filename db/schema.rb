@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522231045) do
+ActiveRecord::Schema.define(version: 20150524061221) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "office_id"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20150522231045) do
 
   add_index "games", ["office_id"], name: "index_games_on_office_id"
   add_index "games", ["user_id"], name: "index_games_on_user_id"
+
+  create_table "mods", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "office_id"
+  end
+
+  add_index "mods", ["user_id"], name: "index_mods_on_user_id"
 
   create_table "offices", force: :cascade do |t|
     t.string   "name"

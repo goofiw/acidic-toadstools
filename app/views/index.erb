@@ -130,9 +130,12 @@
 
 
 <!-- Games Section -->
-<%= erb :_active_game_list %>
+<% if session[:id] %>
+  <%= erb :_active_game_list %>
+  <%= erb :_moderator %>
+<% end %>
 
-
+<a href="#" data-toggle="modal" data-target="#mod">mod</a>
 <!-- Add in Modals -->
 <%= erb :_signin_user %>
 <%= erb :_create_user %>

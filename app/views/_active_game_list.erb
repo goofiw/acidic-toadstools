@@ -6,11 +6,11 @@
                 <h1>Games Section</h1>
                 <% if active_games && active_games.length > 0 %>
 	                <% active_games.each do |game|  %>
-		                <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
+		                <% if (game.user_id == session[:id]) && game.visitor_id == 0 %>
 		                    <p> You're waiting!</p>
 		                    <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
 	                  <% else %>
-		                  <%= game.user.username %> is waiting! at <%= game.getOffice.name %>
+		                  <%= game.user.inspect %> is waiting! at <%= game.getOffice.name %>
 		                <% end %>  
 	                  <br>
 	                <% end %>
