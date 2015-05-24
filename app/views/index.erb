@@ -1,6 +1,5 @@
-<div class="container">
-    <div class="col-md-12 column">
-    <% if @error || (@user && @user.errors.any?) %>
+<!-- Error Alerts -->
+<% if @error || (@user && @user.errors.any?) %>
   <div class="alert alert-danger alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <% if @auth_error %>
@@ -19,77 +18,122 @@
   </div>
 <% end %>
 
-<h2>Welcome <%= session[:username] %></h2>
-
-<br>
-<br>  
-
-<% if session[:username] %>
-  <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
-  <%= erb :_play_button %>
-
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#officeNew">
-    Create Office
-  </button>
-
-  <% if all_offices.length > 0 %>
-    <div>
-      <h3>List of offices</h3>
-      <ul>
-        <% all_offices.each do |office|  %>
-          <li><a href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a></li>
+<% if @game && @game.errors.any? %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error(s):</strong>
+        <ul>
+        <% @game.errors.full_messages.each do |game| %>
+          <li><%= game %></li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <h3>list of All games</h3>  
-  <% if all_games.length > 0 %>
-
-  <!-- TODO insert a link to '/office/:id' (id is the game id) only shows if game id equals current user id -->
-
-      <div>
-      <ul>
-        <% all_games.each do |game|  %>
-          <li><%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
-          
-          <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
-            <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
-          <% end %>
-        <% end %></li>
-          
-
-
-      </ul>
-    </div>
-  <% end %>
-
-  <%= erb :_create_office %>
-  <h2>Current Office<h3>
-  <%= session[:office_name] %> <%= session[:company_name] %>
-
-<% else %>
-<h1>Sign in or create a user to get going</h1>
-<!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
-    Login
-  </button>
-
-  <%= erb :_signin_user %>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">
-    Register
-  </button>
-  <%= erb :_create_user %>
+        </ul>
+  </div>
 <% end %>
 
-    </div>
-</div>
 
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand page-scroll" href="#intro">OfficeFoos</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a class="page-scroll" href="#offices">Offices <span class="sr-only">(current)</span></a></li>
+        <li><a class="page-scroll" href="#games">Games</a></li>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <% if session[:username] %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= session[:username] %> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#" data-toggle="modal" data-target="#officeNew">Create office</a></li>
+              <li class="divider"></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><a href="#" data-toggle="modal" data-target="#login">Login</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#register">Create Account</a></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!-- Intro Section -->
+<section id="intro" class="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Office Fooooos</h1>
+                <h4>Take a Break. Play Fooseball. </h4>
+                <% if session[:username] %>
+                  <% if session[:office_name] %>
+                    <a class="btn btn-success btn-lg page-scroll" href="/play">Play Foo at <%= session[:office_name] %> <%= session[:company_name] %></a>
+                  <% else %>
+                    <div class="dropdown">
+                      <button class="btn btn-success btn-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        Select Office
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <% all_offices.each do |office|  %>
+                          <li> <a role="menuitem" tabindex="-1" href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
+                          <br> </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <a class="btn btn-success btn-lg page-scroll" href="#offices">View Offices</a>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offices Section -->
+<section id="offices" class="offices-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Offices Section</h1>
+                <% if all_offices.length > 0 %>
+                  <% all_offices.each do |office|  %>
+                    <a href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
+                    <br>
+                  <% end %>
+                <% end %>
+
+                <% if session[:username] %>
+                  <br>
+                  Current Office:
+                  <%= session[:office_name] %> <%= session[:company_name] %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Games Section -->
 <%= erb :_active_game_list %>
 
 
-
-
-
+<!-- Add in Modals -->
+<%= erb :_signin_user %>
+<%= erb :_create_user %>
+<%= erb :_create_office %>

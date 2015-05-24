@@ -1,23 +1,17 @@
-  
-<div id="gameList">
-  <h3>list of All games</h3>  
-  <% if all_games.length > 0 %>
-
-  <!-- TODO insert a link to '/office/:id' (id is the game id) only shows if game id equals current user id -->
-
-      <div>
-      <ul>
-        <% all_games.each do |game|  %>
-          <li><%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
-          
-          <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
-            <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
-          <% end %>
-        <% end %></li>
-          
-
-
-      </ul>
+<section id="games" class="games-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Games Section</h1>
+                <% all_games.each do |game|  %>
+                  <%= game %> userid: <%= game.user.id %> visitorid: <%= game.visitor_id %>   
+                  <% if (game.user.id == session[:id]) && game.visitor_id == 0 %>
+                    <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
+                  <% end %>
+                  <br>
+                <% end %>
+            </div>
+        </div>
     </div>
-  <% end %>
-  </div>
+
+</div>

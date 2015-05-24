@@ -5,10 +5,9 @@ class User < ActiveRecord::Base
   validates :email, :username, uniqueness: true, presence: true
   validates :password, presence: true
 
-
-  def add_office(offices_id)
+  def add_office(office_id)
   	OfficesUsers.new( user_id: @id,
-                      office_id: offices_id
+                      office_id: office_id
                       )
   end
 end

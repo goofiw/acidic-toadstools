@@ -1,3 +1,4 @@
 class OfficesUsers < ActiveRecord::Base
-  has_many :users, :offices
+  belongs_to :user
+  belongs_to :office
 end
