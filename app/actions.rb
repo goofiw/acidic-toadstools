@@ -42,6 +42,16 @@ helpers do
       end
     end
 
+    games = Game.find_by_sql("SELECT * FROM games
+                      WHERE visitor_id = #{session[:id]}
+                      AND matched_at IS NOT NULL")
+    games.each do |game| 
+      puts (game.matched_at - Time.now)
+      if game.matched_at
+        recent_games << game if (Time.now - game.matched_at).to_i < 300
+      end
+    end
+
     recent_games
   end
 end
@@ -55,7 +65,6 @@ get '/matched' do
 end
 
 get '/game_list' do
-  puts "FUCK"
   erb :_active_game_list, layout: false
 end
 
