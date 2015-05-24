@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
 	belongs_to :user
 
   def getOffice
-  	Office.find(office_id)
+  	Office.find(office_id) if Office.all > 0
   end
 
   def to_s
