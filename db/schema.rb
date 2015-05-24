@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524012404) do
+ActiveRecord::Schema.define(version: 20150522231045) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "office_id"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20150524012404) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "games", ["office_id"], name: "index_games_on_office_id"
+  add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "offices", force: :cascade do |t|
     t.string   "name"
@@ -32,14 +35,10 @@ ActiveRecord::Schema.define(version: 20150524012404) do
   end
 
   create_table "offices_users", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "mod_id"
-    t.integer "user_id"
     t.integer "office_id"
+    t.integer "user_id"
+    t.integer "mod_id"
   end
-
-  add_index "offices_users", ["office_id"], name: "index_offices_users_on_office_id"
-  add_index "offices_users", ["user_id"], name: "index_offices_users_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

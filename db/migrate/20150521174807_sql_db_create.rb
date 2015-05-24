@@ -20,8 +20,8 @@ class SqlDbCreate < ActiveRecord::Migration
   	end
 
   	create_table :games do |t|
-  		t.references :office
-  		t.references :user
+  		t.references :office, index: true
+  		t.references :user, index: true
   		t.integer :visitor_id
   		t.integer :timeout 
   		t.datetime
