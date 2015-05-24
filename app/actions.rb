@@ -17,7 +17,10 @@ helpers do
 	end
 
   def all_user_offices
-    Office.find_by(user: session[:id])
+    Office.find_by_sql("SELECT * FROM offices
+                  JOIN offices_users
+                  ON offices.id=offices_users.office_id
+                  WHERE user_id = #{session[:id]}")
   end
 
   #check added offices
