@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524061221) do
+ActiveRecord::Schema.define(version: 20150524204637) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "office_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150524061221) do
     t.integer  "timeout"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "matched_at"
   end
 
   add_index "games", ["office_id"], name: "index_games_on_office_id"

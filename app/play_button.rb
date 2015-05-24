@@ -23,11 +23,13 @@ get '/play' do
 		if !!@game && session[:id] != @game.user_id
 	    @game.visitor_id = session[:id]
 	    puts "need to send out a notification"
+	    @game.matched_at = DateTime.now
 		else
 			@game = Game.new(office_id: session[:office_id],
 				               user_id: session[:id],
 	                     visitor_id: 0,
-	                     timeout: 900
+	                     timeout: 900,
+	                     matched_at: nil
 				               )
 			puts "Creating a new Game"
 		end

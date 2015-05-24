@@ -28,10 +28,29 @@ helpers do
                       WHERE visitor_id = 0")
     # User.find(home_player)
   end
+
+  def your_recent_matches
+    games = Game.find_by_sql("SELECT * FROM games
+                      WHERE user_id = #{session[:id]}
+                      AND matched_at IS NOT NULL")
+    recent_games = []
+    
+    games.each do |game| 
+      puts (game.matched_at - Time.now)
+      if game.matched_at
+        recent_games << game if (Time.now - game.matched_at).to_i < 300
+      end
+    end
+
+    recent_games
+  end
 end
 
 get '/matched' do
-  erb :_matched, layout:false #if your game#matched
+  puts Time.now.to_i
+  games = your_recent_matches
+  puts games
+  erb :_matched, layout:false if !games.empty? #if your game#matched
   #game#matched = false
 end
 

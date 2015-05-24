@@ -1,11 +1,6 @@
 class Game < ActiveRecord::Base
 	belongs_to :user
 
-	after_save :update_waiting_user
-
-	def update_waiting_user
-		game.matched = visitor_id_changed?
-	end
 
   def getOffice
   	begin 

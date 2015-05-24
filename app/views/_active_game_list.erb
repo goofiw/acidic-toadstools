@@ -10,7 +10,7 @@
 		                    <p> You're waiting!</p>
 		                    <a class="btn btn-primary btn-xs" href="/game/destroy/<%= game.id %>" role="button">Remove game</a>
 	                  <% else %>
-		                  <%= game.user.inspect %> is waiting! at <%= game.getOffice.name %>
+		                  <%= game.user.username %> is waiting! at <%= game.getOffice.name %>
 		                <% end %>  
 	                  <br>
 	                <% end %>
