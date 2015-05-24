@@ -89,7 +89,7 @@
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <% all_offices.each do |office|  %>
+                        <% all_user_offices.each do |office|  %>
                           <li> <a role="menuitem" tabindex="-1" href="office/<%= office.id %>"><%= office.name %> <%= office.company_name %></a>
                           <br> </li>
                         <% end %>

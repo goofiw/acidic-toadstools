@@ -15,6 +15,12 @@ helpers do
 	def all_games
 		Game.all
 	end
+
+  def all_user_offices
+    Office.find_by(user: session[:id])
+  end
+
+  #check added offices
 end
 
 get '/game_list' do
