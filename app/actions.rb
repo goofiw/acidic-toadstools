@@ -17,13 +17,18 @@ helpers do
 	end
 
   def all_user_offices
+    #should scrub session[:id]
     Office.find_by_sql("SELECT * FROM offices
                   JOIN offices_users
                   ON offices.id=offices_users.office_id
                   WHERE user_id = #{session[:id]}")
   end
 
-  #check added offices
+  def active_games
+    Game.find_by_sql("SELECT * FROM games
+                      WHERE visitor_id = 0")
+    # User.find(home_player)
+  end
 end
 
 get '/game_list' do
