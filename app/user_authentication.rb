@@ -28,6 +28,7 @@ post '/user_sessions' do
 	  session[:user] = @user
     redirect '/'
   else
+    @auth_error = true
     erb :index
   end
 end
