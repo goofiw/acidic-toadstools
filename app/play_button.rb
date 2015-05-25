@@ -28,7 +28,7 @@ get '/play' do
 			home_user = User.find(@game.user_id)
 	    visitor_user = User.find(@game.visitor_id)
 
-      mail(home_user, visitor_user)
+      # mail(home_user, visitor_user)
 
 	    puts "need to send out a notification"
 	    @game.matched_at = DateTime.now

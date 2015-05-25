@@ -75,7 +75,6 @@ get '/matched' do
   puts Time.now.to_i
   games = your_recent_matches
   erb :_matched, layout:false if !games.empty? #if your game#matched
-  #game#matched = false
 end
 
 get '/game_list' do
