@@ -9,6 +9,7 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
+require 'twilio-ruby'
 # require 'sanitize'
 # require 'rotp'
 

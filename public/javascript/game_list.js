@@ -9,6 +9,6 @@ $(document).ready(function() {
 function polling() {
 	console.log("pulling")
   $("#games").load("/game_list");
-  $("#matched").load("/matched");
+  $(".matched").load("/matched");
 	setTimeout(polling, 10000)
 }
