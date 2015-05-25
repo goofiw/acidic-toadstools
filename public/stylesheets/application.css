@@ -8,7 +8,6 @@ html {
     height: 100%;
 }
 
-
 .alert {
   margin-bottom: 4px;
   border: 1px solid transparent;
@@ -56,5 +55,10 @@ html {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.radio {
+    text-align: left;
+    padding-bottom: 4px;
 }
 

@@ -69,7 +69,11 @@ get '/game_list' do
 end
 
 get '/' do
-  @user = User.new
+  if session[:id]
+    @user = User.find(session[:id])
+  else
+    @user = User.new
+  end
   erb :index, :layout => (request.xhr? ? false : :layout)
 end
 
@@ -78,7 +82,7 @@ get '/office/:id' do
   session[:office_name] = Office.find(params[:id]).name
   session[:company_name] = Office.find(params[:id]).company_name
 
-  redirect '/'
+  redirect '/#intro'
 end
 
 get '/game/destroy/:id' do
