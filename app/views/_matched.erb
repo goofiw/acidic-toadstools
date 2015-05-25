@@ -1,1 +1,7 @@
-You have been matched with (username), get to the table!
+<% recent_matches = your_recent_matches %>
+<% if recent_matches.length > 0 %>
+  <% recent_matches.each do |game| %>
+		<p>You have been matched with <%= get_visitor_name(game) %>, get to the table!</p>
+	<% end %>
+<% end %>
+

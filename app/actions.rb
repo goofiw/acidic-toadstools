@@ -54,8 +54,11 @@ helpers do
         recent_games << game if (Time.now - game.matched_at).to_i < 300
       end
     end
-
     recent_games
+  end
+
+  def get_visitor_name(game)
+    User.find(game.visitor_id).username
   end
 
   def get_office_mod_name(office)
@@ -71,7 +74,6 @@ end
 get '/matched' do
   puts Time.now.to_i
   games = your_recent_matches
-  puts games
   erb :_matched, layout:false if !games.empty? #if your game#matched
   #game#matched = false
 end

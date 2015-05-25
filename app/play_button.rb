@@ -32,6 +32,7 @@ get '/play' do
 
 	    puts "need to send out a notification"
 	    @game.matched_at = DateTime.now
+	    send_sms(User.find(session[:id]), User.find(@game.user_id))
 		else
 			@game = Game.new(office_id: session[:office_id],
 				               user_id: session[:id],
@@ -54,6 +55,7 @@ get '/play' do
 	end
 end
 
+
 def game_waiting
   Game.find_by(visitor_id: 0, office_id: session[:office_id])
 end
@@ -61,3 +63,24 @@ end
 def already_has_game?
   Game.find_by(user_id: session[:id], office_id: session[:office_id], visitor_id: 0) 
 end
+
+def send_sms(user, visitor)
+	  #guys super careful with this code.  Running it costs real money.
+	if user.phone  
+	  twilio_client.messages.create(
+		from: '+17782000868',
+	 	to: "#{user.phone}",
+	 	body: "You've been matched with #{visitor.username}" 
+	  )
+	end
+	if visitor.phone
+	  twilio_client.messages.create(
+		from: '+17782000868',
+	 	to: "#{visitor.phone}",
+	 	body: "You've been matched with #{user.username}" 
+	  )
+	end
+end
+
+
+
