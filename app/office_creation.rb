@@ -4,6 +4,7 @@ post '/office/new' do
 		               name: params[:name],
 		               company_name: params[:company_name],
 		               password: params[:password] ||= nil,
+		               address: params[:address]
 		               )
 	if @office.save 
 	#notify account creation

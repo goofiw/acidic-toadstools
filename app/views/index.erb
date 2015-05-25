@@ -95,7 +95,7 @@
                 <div id="matched"></div>
                   <% if session[:username] %>
                     <% if session[:office_name] %>
-                      <a class="btn btn-success btn-lg" href="/play">Play Foo at <%= session[:company_name] %> <%= session[:office_name] %></a>
+                      <a class="btn btn-success btn-lg" href="/play">Play Foo at <%= session[:company_name] %> (<%= session[:office_name] %>)</a>
                     <% else %>
                       <a class="btn btn-success btn-lg page-scroll" href="#offices">Select Office</a>
                     <% end %>
@@ -112,31 +112,50 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>Offices Section</h1>
-                <% if session[:username] %>
+                <h1>Office List</h1>
+                <!-- OFFICE CARDS (JEFF) -->
+                <% if session[:username] %> <!-- IF USER LOGGED IN -->
                   <% if all_offices.length > 0 %>
                     <% all_offices.each do |office|  %>
-                      <a href="office/<%= office.id %>"><%= office.company_name %> <%= office.name %> </a>
-                      <br>
+                      <!-- <a href="office/<%= office.id %>"><%= office.company_name %> <%= office.name %> </a> -->
+                      <center>
+                      <div class="list-group" align="left">
+                        <a href="office/<%= office.id %>" class="list-group-item">
+                          <h4 class="list-group-item-heading">
+                            <!-- <span class="glyphicon glyphicon-home" aria-hidden="true"></span> -->
+                            <%= office.company_name %> (<%= office.name %>)
+                          </h4>
+                          <p class="list-group-item-text">Admin/Mod: <%= get_office_mod_name(office) %></p>
+                          <p class="list-group-item-text">Contact Information: <%= get_office_contact_email(office) %></p>
+                          <p class="list-group-item-text">Address: <%= office.address %></p>
+                        </a>
+                      </div>
+                      </center>
+                      
                     <% end %> 
                   <% end %>
-                <% else %>
+
+                <% else %> <!-- WHEN NOT LOGGED IN, DISPLAY LIST AND LINK TO SIGN UP MODAL WHEN CLICKED -->
                   <% all_offices.each do |office|  %>
-                    <a  href="#" data-toggle="modal" data-target="#login"><%= office.company_name %> <%= office.name %> </a>
-                    <br>
+                    <center>
+                      <div class="list-group" align="left">
+                        <a href="#" data-toggle="modal" data-target="#login" class="list-group-item">
+                          <h4 class="list-group-item-heading">
+                            <%= office.company_name %> (<%= office.name %>)
+                          </h4>
+                          <p class="list-group-item-text">Admin/Mod: <%= get_office_mod_name(office) %></p>
+                          <p class="list-group-item-text">Contact Information: <%= get_office_contact_email(office) %></p>
+                          <p class="list-group-item-text">Address: <%= office.address %></p>
+                        </a>
+                      </div>
+                      </center>
                   <% end %>
                 <% end %>
-                
-                <% if session[:username] %>
-                  <br>
-                  <strong>Your Office is set to:</strong>
-                  <%= session[:office_name] %> <%= session[:company_name] %>
-                <% end %>
+                <!-- END (JEFF) -->
             </div>
         </div>
     </div>
 </section>
-
 
 <!-- Games Section -->
 <% if session[:id] %>
