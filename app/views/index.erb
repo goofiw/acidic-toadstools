@@ -1,3 +1,9 @@
+<%= erb :_signin_user %>
+<%= erb :_create_user %>
+<%= erb :_create_office %>
+<%= erb :_guided_tour %>
+<%= erb :_edit_user %>
+
 <!-- Error Alerts -->
 <% if @auth_error || (@user && @user.errors.any?) %>
   <div class="alert alert-danger alert-dismissible" role="alert">
@@ -140,8 +146,3 @@
 
 <a href="#" data-toggle="modal" data-target="#mod">mod</a>
 <!-- Add in Modals -->
-<%= erb :_signin_user %>
-<%= erb :_create_user %>
-<%= erb :_create_office %>
-<%= erb :_guided_tour %>
-<%= erb :_edit_user %>
