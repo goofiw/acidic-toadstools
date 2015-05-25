@@ -44,6 +44,15 @@ helpers do
 
     recent_games
   end
+
+  def get_office_mod_name(office)
+    User.find(office.mod[:user_id]).username
+  end
+
+  def get_office_contact_email(office)
+    User.find(office.mod[:user_id]).email
+  end
+
 end
 
 get '/matched' do
