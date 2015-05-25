@@ -30,6 +30,11 @@
   </div>
 <% end %>
 
+<% if session[:success_msg]%>
+  <div class="alert alert-success" role="alert"><%= session[:success_msg] %></div>
+  <% session[:success_msg] = nil %>
+<% end %>
+
 
 <!-- Navbar -->
 <nav class="navbar navbar-default">
@@ -57,8 +62,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= session[:username] %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#" data-toggle="modal" data-target="#officeNew">Create office</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#guidedTour">Guided tour</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#officeNew">Create Office</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#editUser">Edit Account</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#guidedTour">Guided Tour</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
@@ -138,3 +144,4 @@
 <%= erb :_create_user %>
 <%= erb :_create_office %>
 <%= erb :_guided_tour %>
+<%= erb :_edit_user %>

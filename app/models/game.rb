@@ -1,7 +1,6 @@
 class Game < ActiveRecord::Base
 	belongs_to :user
 
-
   def getOffice
   	begin 
 	  	Office.find(office_id) 

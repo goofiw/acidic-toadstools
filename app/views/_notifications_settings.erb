@@ -1,0 +1,52 @@
+<!-- REGISTER MODAL -->
+
+<div class="modal fade" id="notifications" tabindex="-1" role="dialog" aria-labelledby="notifications" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Notification Settings</h4>
+      </div>
+      <div class="modal-body">
+       <form method="post" action="user/set_notifications" class="form-horizontal">
+
+        <label class="col-sm-4 control-label">Notification Settings:</label>
+        <div class="col-sm-8 form-group">
+          <div class="radio">
+            <label>
+              <input type="radio" name="notification_setting" id="optionsRadios1" value="E" checked>
+              Email
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="notification_setting" id="optionsRadios2" value="T">
+              Text Message
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="notification_setting" id="optionsRadios3" value="B">
+              Email and Text Message
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Mobile Phone:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="phone" placeholder="604-123-4567" >
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" value="Submit" class="btn btn-primary">Finish</button>
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
