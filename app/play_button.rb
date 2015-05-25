@@ -6,6 +6,7 @@
 # 		add this_user_id to record, send_out_email/sound/notification w/ matched user and instructions
 # 		 
 
+require_relative 'mailer.rb'
 
 
 get '/play' do
@@ -23,6 +24,12 @@ get '/play' do
 		#game matched 
 		if !!@game && session[:id] != @game.user_id
 	    @game.visitor_id = session[:id]
+			
+			home_user = User.find(@game.user_id)
+	    visitor_user = User.find(@game.visitor_id)
+
+      mail(home_user, visitor_user)
+
 	    puts "need to send out a notification"
 	    @game.matched_at = DateTime.now
 		else

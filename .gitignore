@@ -7,3 +7,4 @@
 .DS_Store
 public/assets
 /app/twilio_helper.rb
+/app/mailer.rb

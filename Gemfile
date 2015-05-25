@@ -12,6 +12,7 @@ gem 'twilio-ruby'
 
 gem 'puma'
 gem 'tux'
+gem 'actionmailer'
 # gem 'sanitize'
 # gem 'rotp'
 
