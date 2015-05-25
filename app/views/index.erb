@@ -71,6 +71,8 @@
               <li><a href="#" data-toggle="modal" data-target="#officeNew">Create Office</a></li>
               <li><a href="#" data-toggle="modal" data-target="#editUser">Edit Account</a></li>
               <li><a href="#" data-toggle="modal" data-target="#guidedTour">Guided Tour</a></li>
+
+              <li><a href="#" data-toggle="modal" class="polling-toggle" data-target="#officeNew">Create office</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
@@ -128,6 +130,9 @@
                           <p class="list-group-item-text">Admin/Mod: <%= get_office_mod_name(office) %></p>
                           <p class="list-group-item-text">Contact Information: <%= get_office_contact_email(office) %></p>
                           <p class="list-group-item-text">Address: <%= office.address %></p>
+                          <% if get_current_username ==  get_office_mod_name(office) %>
+                            <a class="glyphico-remove-circle" href="#" data-toggle="modal" data-target="#mod"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                          <% end %>
                         </a>
                       </div>
                       </center>
@@ -160,6 +165,5 @@
 <!-- Games Section -->
 <% if session[:id] %>
   <%= erb :_active_game_list %>
-  <%= erb :_moderator %>
 <% end %>
 <!-- Add in Modals -->

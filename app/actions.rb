@@ -2,7 +2,6 @@ require_relative 'twilio_helper'
 require_relative 'user_authentication'
 require_relative 'play_button'
 require_relative 'office_creation'
-
 # Homepage (Root path)
 
 helpers do
@@ -21,6 +20,10 @@ helpers do
                   JOIN offices_users
                   ON offices.id=offices_users.office_id
                   WHERE user_id = #{session[:id]}")
+  end
+
+  def get_current_username
+    User.find(session[:id]).username
   end
 
   def active_games
@@ -99,3 +102,54 @@ get '/game/destroy/:id' do
   Game.find(params[:id]).destroy
   redirect '/#games'
 end
+
+get '/user/add_number' do
+  erb :'_phone_number_entry'
+end
+
+post '/user/register' do
+  @phone_number = Sanitize.clean(params[:phone_number])
+  if @phone_number.empty?
+    redirect to("/")
+  end
+ 
+  begin
+    if @error == false
+      user = User.find(session[:id])
+ 
+      if user.verified == true
+        @phone_number = url_encode(@phone_number)
+        redirect to("/verify?phone_number=#{@phone_number}&verified=1")
+      end
+      totp = ROTP::TOTP.new("bombidiggty")
+      code = totp.now
+ 
+      user.code = code
+      user.save
+   twilio_client.messages.create(from: '+17782000868',
+                                 to: "#{user.number}",
+                                 body: "Your code from office foos: #{code}" 
+   )
+    end
+    erb :'_phone_number_verificaion'
+  rescue
+    redirect '/'
+  end
+end
+
+post '/verify' do
+  user = find(session[:id])
+  user.phone_number = Sanitize.clean(params[:phone_number])
+ 
+  code = Sanitize.clean(params[:code])
+  if user.verified == true
+    @verified = true
+  elsif user.nil? or user.code != code
+    redirect '/'
+  else
+    user.verified = true
+    user.save
+  end
+  erb :verified
+end
+

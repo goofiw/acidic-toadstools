@@ -9,6 +9,8 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
+# require 'sanitize'
+# require 'rotp'
 
 require 'pry' unless ENV['RACK_ENV'] == 'production'
 

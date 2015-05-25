@@ -19,7 +19,8 @@ get '/play' do
 
 	@game = game_waiting
 	if session[:office_id]  && !already_has_game?
-		current_user_game = Game.find_by(user_id: session[:id]) 
+		current_user_game = Game.find_by(user_id: session[:id])
+		#game matched 
 		if !!@game && session[:id] != @game.user_id
 	    @game.visitor_id = session[:id]
 	    puts "need to send out a notification"
