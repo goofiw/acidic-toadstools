@@ -13,8 +13,11 @@
 		                  <%= game.user.username %> is waiting! at <%= game.getOffice.name %>
 		                <% end %>  
 	                  <br>
+
 	                <% end %>
                 <% end %>
+               <a href="#" data-toggle="modal" data-target="#mod">mod</a> 
+               <%= erb :_moderator %>
             </div>
         </div>
     </div>
