@@ -68,7 +68,11 @@ get '/game_list' do
 end
 
 get '/' do
-  @user = User.new
+  if session[:id]
+    @user = User.find(session[:id])
+  else
+    @user = User.new
+  end
   erb :index, :layout => (request.xhr? ? false : :layout)
 end
 

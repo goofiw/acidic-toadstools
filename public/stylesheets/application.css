@@ -57,3 +57,8 @@ html {
     -o-background-size: cover;
 }
 
+.radio {
+    text-align: left;
+    padding-bottom: 4px;
+}
+
