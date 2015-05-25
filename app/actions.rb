@@ -57,8 +57,12 @@ helpers do
     recent_games
   end
 
-  def get_visitor_name(game)
-    User.find(game.visitor_id).username
+  def get_other_user_name(game)
+    user = User.find(game.user_id).username
+    if session[:id] == game.user_id
+      user = User.find(game.visitor_id).username
+    end
+    user
   end
 
   def get_office_mod_name(office)
