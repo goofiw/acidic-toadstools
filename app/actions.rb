@@ -33,9 +33,8 @@ helpers do
   end
 
   def your_recent_matches
-    games = Game.find_by_sql("SELECT * FROM games
-                      WHERE user_id = #{session[:id]}
-                      AND matched_at IS NOT NULL")
+    games = Game.where("user_id = #{session[:id]}
+                      ").where("matched_at NOT NULL")
     recent_games = []
     
     games.each do |game| 
