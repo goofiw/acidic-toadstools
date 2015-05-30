@@ -32,23 +32,21 @@ helpers do
     # User.find(home_player)
   end
 
+  #dry it up
   def your_recent_matches
-    games = Game.where("user_id = #{session[:id]}
-                      ").where("matched_at NOT NULL")
+    games = Game.where(user_id: session[:id]).where.not(matched_at: nil)
     recent_games = []
     
     games.each do |game| 
-      puts (game.matched_at - Time.now)
+
       if game.matched_at
         recent_games << game if (Time.now - game.matched_at).to_i < 300
       end
     end
 
-    games = Game.find_by_sql("SELECT * FROM games
-                      WHERE visitor_id = #{session[:id]}
-                      AND matched_at IS NOT NULL")
+    games = Game.where(visitor_id: session[:id]).where.not(matched_at: nil)
     games.each do |game| 
-      puts (game.matched_at - Time.now)
+
       if game.matched_at
         recent_games << game if (Time.now - game.matched_at).to_i < 300
       end
@@ -156,4 +154,5 @@ post '/verify' do
   end
   erb :verified
 end
+
 
