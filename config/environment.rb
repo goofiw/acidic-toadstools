@@ -14,7 +14,7 @@ require 'twilio-ruby'
 # require 'rotp'
 
 require 'pry' unless ENV['RACK_ENV'] == 'production'
-
+require '.env' unless ENV['RACK_ENV'] == 'production'
 
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

@@ -13,8 +13,8 @@ gem 'twilio-ruby'
 gem 'puma'
 gem 'tux'
 gem 'actionmailer'
-# gem 'sanitize'
-# gem 'rotp'
+# gem 'sanitize'   # for santitizing user inputs
+# gem 'rotp'       # for generating random keys for user phone number auth
 
 
 
