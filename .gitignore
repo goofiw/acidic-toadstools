@@ -6,5 +6,4 @@
 /db/*.sqlite3-journal
 .DS_Store
 public/assets
-/app/twilio_helper.rb
-/app/mailer.rb
+.env
