@@ -34,7 +34,7 @@ helpers do
 
   #dry it up
   def your_recent_matches
-    games = Game.where(user_id: session[:id]).where.not(matched_at: nil)
+    games = Game.where(user_id: session[:id]).where.("matched_at IS NOT NULL")
     recent_games = []
     
     games.each do |game| 
@@ -44,7 +44,7 @@ helpers do
       end
     end
 
-    games = Game.where(visitor_id: session[:id]).where.not(matched_at: nil)
+    games = Game.where(visitor_id: session[:id]).where("matched_at IS NOT NULL")
     games.each do |game| 
 
       if game.matched_at
