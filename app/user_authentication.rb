@@ -1,4 +1,5 @@
 post '/user/new' do
+	Sanitize.clean(params);
 	@password_match = (params[:password] == params[:password_confirm])
 	@user = User.new(
 		               username: params[:username],
@@ -20,6 +21,7 @@ post '/user/new' do
 end
 
 post '/user_sessions' do
+	Sanitize.clean(params);
   @user = User.find_by(email: params[:email], password: params[:password])
   if @user
   	session[:id] = @user.id
@@ -51,6 +53,7 @@ post 'user/set_notifications' do
 end
 
 post '/user/edit' do
+	Sanitize.clean(params);
   @password_match = (params[:password] == params[:password_confirm])
   @user = User.find(session[:id])
   @user.phone = params[:phone]

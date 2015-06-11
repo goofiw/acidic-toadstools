@@ -10,7 +10,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'twilio-ruby'
-# require 'sanitize'
+require 'sanitize'
 # require 'rotp'
 
 require 'pry' unless ENV['RACK_ENV'] == 'production'

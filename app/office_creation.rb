@@ -1,4 +1,5 @@
 post '/office/new' do
+	Sanitize.clean(params)
 	# @password_match = (params[:password] == params[:password_confirm])
 	@office = Office.new(
 		               name: params[:name],

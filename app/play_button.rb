@@ -23,6 +23,8 @@ get '/play' do
 		current_user_game = Game.find_by(user_id: session[:id])
 		#game matched 
 		if !!@game && session[:id] != @game.user_id
+			puts session[:id]
+			puts "Above error"
 	    @game.visitor_id = session[:id]
 			
 			home_user = User.find(@game.user_id)
