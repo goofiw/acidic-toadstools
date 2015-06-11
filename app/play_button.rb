@@ -38,7 +38,7 @@ get '/play' do
 				               user_id: session[:id],
 	                     visitor_id: 0,
 	                     timeout: 900,
-	                     matched_at: DateTime
+	                     matched_at: DateTime.now
 				               )
 			puts "Creating a new Game"
 		end
