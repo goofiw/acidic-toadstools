@@ -96,7 +96,7 @@
                 <h4>Take a Break. Play Fooseball. </h4>
                 <div class="matched"></div>
                   <% if session[:username] %>
-                    <% if session[:office_name] %>
+                    <% if session[:office_id] %>
                       <a class="btn btn-success btn-lg" href="/play">Play Foo at <%= session[:company_name] %> (<%= session[:office_name] %>)</a>
                     <% else %>
                       <a class="btn btn-success btn-lg page-scroll" href="#offices">Select Office</a>

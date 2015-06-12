@@ -93,6 +93,8 @@ end
 
 get '/office/:id' do
   session[:office_id] = params[:id]
+	puts Office.find(params[:id]).name
+	puts "XXXXXXXXXXXXXXXXXXXXXX";
   session[:office_name] = Office.find(params[:id]).name
   session[:company_name] = Office.find(params[:id]).company_name
 
