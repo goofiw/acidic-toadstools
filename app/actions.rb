@@ -56,7 +56,7 @@ helpers do
 
   def get_other_user_name(game)
     user = User.find(game.user_id).username
-    if session[:id] == game.user_id
+    if game.visitor_id != 0 && session[:id] == game.user_id
       user = User.find(game.visitor_id).username
     end
     user
