@@ -83,7 +83,7 @@ get '/game_list' do
 end
 
 get '/' do
-  if session[:id]
+  if session[:id] && User.all.length > 0
     @user = User.find(session[:id])
   else
     @user = User.new
