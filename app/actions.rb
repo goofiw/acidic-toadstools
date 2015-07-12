@@ -34,7 +34,7 @@ helpers do
 
   #dry it up
   def your_recent_matches
-    games = Game.where(user_id: session[:id]).where.not(matched_at: nil)
+    games = Game.where(user_id: session[:id]).where.not(visitor_id: 0)
     recent_games = []
     
     games.each do |game| 
@@ -104,7 +104,7 @@ end
 get '/game/destroy/:id' do
   #should delete the game with id params[:id]
   Game.find(params[:id]).destroy
-  redirect '/#games'
+  redirect '/games'
 end
 
 get '/user/add_number' do

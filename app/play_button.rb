@@ -22,7 +22,7 @@ get '/play' do
 	if session[:office_id]  && !already_has_game?
 		current_user_game = Game.find_by(user_id: session[:id])
 		#game matched 
-		if !!@game && session[:id] != @game.user_id
+		if @game && session[:id] != @game.user_id
 			puts session[:id]
 			puts "Above error"
 	    @game.visitor_id = session[:id]

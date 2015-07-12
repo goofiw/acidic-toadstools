@@ -144,3 +144,6 @@ DEPENDENCIES
   sqlite3
   tux
   twilio-ruby
+
+BUNDLED WITH
+   1.10.4
