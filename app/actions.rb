@@ -104,7 +104,7 @@ end
 get '/game/destroy/:id' do
   #should delete the game with id params[:id]
   Game.find(params[:id]).destroy
-  redirect '/games'
+  redirect '/'
 end
 
 get '/user/add_number' do
