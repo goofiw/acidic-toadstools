@@ -1,7 +1,9 @@
 Sinatra
 =============
 
-Brought to you by Lighthouse Labs
+Need a break from work? Sign in, choose or create an office and hit play foos! The you will be matched with a likeminded coworker and recieve an email or text message notifying you of your match.
+
+in the Sinatra framework and implements Ajax polling, Twilio API text messaging, automatic emailing, JQuery, and Bootstrap 
 
 ## Getting Started
 
